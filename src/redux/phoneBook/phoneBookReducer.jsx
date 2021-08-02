@@ -7,12 +7,11 @@ const items = createReducer([], {
     state.filter(({ id }) => id !== action.payload),
 });
 
-export default combineReducers({
-  items,
+const filter = createReducer('', {
+  [actions.changeFilter]: (_, action) => action.payload,
 });
 
-// const filter = createReducer('', {
-//   [actions.changeFilter]: (_, action) => action.payload,
-// });
-
-// filter,
+export default combineReducers({
+  items,
+  filter,
+});

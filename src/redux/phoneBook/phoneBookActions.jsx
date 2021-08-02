@@ -10,11 +10,17 @@ const addContact = createAction('phoneBook/add', (name, number) => {
     },
   };
 });
+
 const deleteContact = createAction('phoneBook/delete', id => {
   return {
     payload: id,
   };
 });
-const changeFilter = createAction('phoneBook/changeFilter');
+
+const changeFilter = createAction('phoneBook/changeFilter', filter => {
+  return {
+    payload: filter,
+  };
+});
 
 export default { addContact, deleteContact, changeFilter };

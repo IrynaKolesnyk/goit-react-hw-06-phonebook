@@ -4,7 +4,6 @@ import ContactListStyled from './ContactListStyled';
 import contactsActions from '../../redux/phoneBook/phoneBookActions';
 
 const ContactList = ({ contacts, onDeleteContact }) => {
-  console.log(contacts);
   return (
     <ContactListStyled>
       {contacts.map(contact => {
@@ -28,9 +27,16 @@ const ContactList = ({ contacts, onDeleteContact }) => {
   );
 };
 
+const getVisibleContacts = (allContacts, filter) => {
+  const normalizedFilter = filter.toLowerCase();
+  return allContacts.filter(contact =>
+    contact.name.toLowerCase().includes(normalizedFilter),
+  );
+};
+
 const mapstateToProps = state => {
   return {
-    contacts: state.contacts.items,
+    contacts: getVisibleContacts(state.contacts.items, state.contacts.filter),
   };
 };
 

@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import FilterStyled from './FilterStyled';
+import contactsActions from '../../redux/phoneBook/phoneBookActions';
 
 const Filter = ({ filter, onChange }) => {
   return (
@@ -24,15 +26,12 @@ const Filter = ({ filter, onChange }) => {
   );
 };
 
-export default Filter;
+const mapstateToProps = state => ({
+  value: state.contacts.filter,
+});
 
-// const mapstateToProps = state => ({
-//   value: state.phoneBook.filter,
-// });
+const mapDispatchToProps = dispatch => ({
+  onChange: event => dispatch(contactsActions.changeFilter(event.target.value)),
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   onChange: event =>
-//     dispatch(phoneBookActions.changeFilter(event.target.value)),
-// });
-
-// export default connect(mapstateToProps, mapDispatchToProps)(Filter);
+export default connect(mapstateToProps, mapDispatchToProps)(Filter);

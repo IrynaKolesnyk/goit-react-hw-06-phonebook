@@ -12,22 +12,6 @@ class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    filter: '',
-  };
-
-  // // contacts
-
-  // deleteContact = contactId => {
-  //   const warningMassege = window.confirm('Delete this contact?');
-  //   if (warningMassege === false) return;
-  //   this.setState(prevState => ({
-  //     contacts: prevState.contacts.filter(contact => contact.id !== contactId),
-  //   }));
-  // };
-
-  // filter
-  changeFilter = event => {
-    this.setState({ filter: event.target.value });
   };
 
   getVisibleContacts = () => {
@@ -59,7 +43,7 @@ class App extends Component {
         <h1>Phonebook</h1>
         <ContactForm />
         <h2>Contacts</h2>
-        <Filter filter={this.state.filter} onChange={this.changeFilter} />
+        <Filter />
         <ContactList />
       </div>
     );
