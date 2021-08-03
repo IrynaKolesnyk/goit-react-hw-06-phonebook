@@ -19,8 +19,13 @@ class ContactForm extends Component {
   };
 
   handelFormSubmit = event => {
-    const { name, number } = this.state;
     event.preventDefault();
+    const { name, number } = this.state;
+    const { contacts } = this.props;
+    const existContact = contacts.find(contact => contact.name === name);
+    if (existContact) {
+      return alert(`Contact "${name}" already exists`);
+    }
     this.props.onSubmit(name, number);
     this.setState({ name: '', number: '' });
   };
@@ -69,9 +74,13 @@ class ContactForm extends Component {
   }
 }
 
+const mapstateToProps = state => ({
+  contacts: state.contacts.items,
+});
+
 const mapDispatchToProps = dispatch => ({
   onSubmit: (name, number) =>
     dispatch(contactsActions.addContact(name, number)),
 });
 
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default connect(mapstateToProps, mapDispatchToProps)(ContactForm);

@@ -23,4 +23,6 @@ const changeFilter = createAction('phoneBook/changeFilter', filter => {
   };
 });
 
-export default { addContact, deleteContact, changeFilter };
+const storageContact = createAction('phoneBook/storageContact');
+
+export default { addContact, deleteContact, changeFilter, storageContact };
