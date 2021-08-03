@@ -22,7 +22,9 @@ class ContactForm extends Component {
     event.preventDefault();
     const { name, number } = this.state;
     const { contacts } = this.props;
-    const existContact = contacts.find(contact => contact.name === name);
+    const existContact = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
     if (existContact) {
       return alert(`Contact "${name}" already exists`);
     }
@@ -34,7 +36,7 @@ class ContactForm extends Component {
     return (
       <ContactFormStyled>
         <form className="contacts-form" onSubmit={this.handelFormSubmit}>
-          <label className="form-label" id={this.nameId}>
+          <label className="form-label">
             Name
             <input
               className="form-input"
@@ -44,7 +46,6 @@ class ContactForm extends Component {
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Name can only contains letters, apostrophe, dashes and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan etc."
               required
-              id={this.nameId}
               onChange={this.handelInputChange}
               autoComplete="off"
             />
